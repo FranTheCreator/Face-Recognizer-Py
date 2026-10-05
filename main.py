@@ -12,6 +12,7 @@ VisionRunningMode = mp.tasks.vision.RunningMode
 
 captured_frames = None
 
+
 def print_res(result, output: mp.Image, ts_ms: int):
     first_detection = result.detections[0] if result.detections else None 
     if not first_detection or captured_frames is None: return
@@ -46,6 +47,7 @@ def print_res(result, output: mp.Image, ts_ms: int):
 
 
 
+
 options = FaceDetectorOptions(
     BaseOptions("./models/blaze_face_short_range.tflite"),
     VisionRunningMode.LIVE_STREAM,
@@ -53,6 +55,8 @@ options = FaceDetectorOptions(
     0.5,
     print_res
 )
+
+
 
 with FaceDetector.create_from_options(options) as detector: 
     webcam = cv2.VideoCapture(0)
